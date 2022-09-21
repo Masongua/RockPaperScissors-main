@@ -22,6 +22,14 @@ Rock, paper, scissors is a classic two player hand game dating back to ancient C
  * If userInput is "rock" OR userInputis "paper" OR userInput is "scissors", return userInput.
  * Otherwise, return the message, "You can only enter rock, paper, or scissors. Try again."
  */
+func getUserChoice(userInput: String) -> String{
+    
+    if userInput == "rock" || userInput == "scissors" || userInput == "paper"{
+        return userInput
+    } else {
+        return "You can only enter rock, paper, or scissors. Try again"
+    }
+}
 
 
 
@@ -31,7 +39,7 @@ Rock, paper, scissors is a classic two player hand game dating back to ancient C
  Call the function, ***getUserChoice(userInput:)***, and pass in an argument for userInput. Wrap the function in a print() statement.
 
  */
-
+print(getUserChoice(userInput: "rock"))
 /*:
  
  ### Computer Choice
@@ -50,7 +58,19 @@ Rock, paper, scissors is a classic two player hand game dating back to ancient C
  * 2 should return "scissors"
  Conclude the switch statement with a default that returns the String, "Something went wrong".
 */
- 
+func getComputerChoice() -> String{
+    let randomNumber = Int.random(in: 0...2)
+    switch randomNumber{
+    case 0:
+        return "rock"
+    case 1:
+        return "paper"
+    case 2:
+        return "scissors"
+    default:
+        return "Something went wrong"
+    }
+}
 
 
 /*:
@@ -83,20 +103,50 @@ Rock, paper, scissors is a classic two player hand game dating back to ancient C
  Below the final case, add a defaultstatement that prints, "Something went wrong".
  Conclude the function with a statement that returns decision.
  */
+func determineWinner(_ userChoice: String, to compChoice: String) -> String{
+    var decision = "It's a tie"
+    switch userChoice{
+    case "rock":
+        if compChoice == "paper" {
+            decision = "The computer Won"
+        } else if compChoice == "scissors"{
+            decision = "The user won"
+        }
+    case "paper":
+        if compChoice == "rock" {
+            decision = "The User Won"
+        } else if compChoice == "scissors"{
+            decision = "The computer won"
+        }
+    case "scissors":
+        if compChoice == "rock" {
+            decision = "The computer Won"
+        } else if compChoice == "paper"{
+            decision = "The user won"
+        }
+    default:
+        print("Something went wrong")
+        
+       
+    }
+    return decision
+    
+}
+    /*: Add three consecutive print()statements to display the user’s choice, the computer’s choice, and the winner:
+     Use string interpolation in the first print() statement to output: "You threw [user choice]"
+     Use string interpolation in the second print() statement to output: "The computer threw [computer choice]"
+     Call the determineWinner() function and pass in the variables, userChoiceand compChoice, as arguments.
+     
+     */
+print("You threw \(getUserChoice(userInput: "rock"))")
+print("The computer threw \(getComputerChoice())")
+print(determineWinner(getUserChoice(userInput: "rock"), to: getComputerChoice()))
+    
+    /*:
+     Excellent work! 👏 You’ve utilized your knowledge of functions and previous fundamental Swift concepts to create a rock, paper, scissors game.
+     
+     Run your program several times to see the computer’s different moves and outcome of the game each time. Test your code with different values for userInput and ensure your code is working as expected.
+     
+     */
+    
 
-
-
-/*: Add three consecutive print()statements to display the user’s choice, the computer’s choice, and the winner:
-Use string interpolation in the first print() statement to output: "You threw [user choice]"
-Use string interpolation in the second print() statement to output: "The computer threw [computer choice]"
-Call the determineWinner() function and pass in the variables, userChoiceand compChoice, as arguments.
-
-*/
-
-
-/*:
-Excellent work! 👏 You’ve utilized your knowledge of functions and previous fundamental Swift concepts to create a rock, paper, scissors game.
- 
-Run your program several times to see the computer’s different moves and outcome of the game each time. Test your code with different values for userInput and ensure your code is working as expected.
-
-*/
